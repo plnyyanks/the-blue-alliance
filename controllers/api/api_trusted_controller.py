@@ -245,3 +245,43 @@ class ApiTrustedAddMatchYoutubeVideo(ApiTrustedBaseController):
         MatchManipulator.createOrUpdate(matches_to_put)
 
         self.response.out.write(json.dumps({'Success': "Match videos successfully updated"}))
+
+
+class ApiTrustedDeleteMatchYoutubeVideo(ApiTrustedBaseController):
+    """
+    Remove YouTube videos from a match
+    """
+    REQUIRED_AUTH_TYPES = {AuthType.MATCH_VIDEO_DELETE}
+
+    def _process_request(self, request, event_key):
+        try:
+            match_videos = json.loads(request.body)
+        except Exception:
+            self._errors = json.dumps({"Error": "Invalid JSON. Please check input."})
+            self.abort(400)
+            return
+
+        matches_to_put = []
+        for match_data in match_videos:
+            partial_match_key = match_data['match']
+            match_key = '{}_{}'.format(event_key, partial_match_key)
+            match = Match.get_by_id(match_key)
+            if match is None:
+                self._errors = json.dumps({"Error": "Match {} does not exist!".format(match_key)})
+                self.abort(400)
+                return
+
+            if 'videos' not in match_data or not isinstance(match_data['videos'], list):
+                self._errors = json.dumps({"Error": "Invalid list of video IDs"})
+
+            for youtube_id in match_data['videos']:
+                if youtube_id in match.youtube_videos:
+                    match.youtube_videos.remove(youtube_id)
+            else:
+                # If the provided list is empty, remove all videos
+                match.youtube_videos = []
+            matches_to_put.append(match)
+
+        MatchManipulator.createOrUpdate(matches_to_put)
+
+        self.response.out.write(json.dumps({'Success': "Match videos successfully updated"}))

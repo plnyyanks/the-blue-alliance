@@ -11,13 +11,15 @@ class AuthType(object):
     EVENT_RANKINGS = 4
     EVENT_ALLIANCES = 5
     EVENT_AWARDS = 6
+    MATCH_VIDEO_DELETE = 7
 
     # Read Type
     READ_API = 1000
 
     write_type_names = {
         # EVENT_DATA: "event data",  # DEPRECATED
-        MATCH_VIDEO: "match video",
+        MATCH_VIDEO: "add match videos",
+        MATCH_VIDEO_DELETE: "delete match videos",
         EVENT_TEAMS: "event teams",
         EVENT_MATCHES: "event matches",
         EVENT_RANKINGS: "event rankings",

@@ -72,6 +72,12 @@ class TestApiTrustedController(unittest2.TestCase):
                                         event_list=[ndb.Key(Event, '2014casj')],
                                         auth_types_enum=[AuthType.MATCH_VIDEO])
 
+        self.video_del_auth = ApiAuthAccess(id='tEsT_id_5',
+                                        secret='321tEsTsEcReT',
+                                        description='test',
+                                        event_list=[ndb.Key(Event, '2014casj')],
+                                        auth_types_enum=[AuthType.MATCH_VIDEO_DELETE])
+
         self.expired_auth = ApiAuthAccess(id='tEsT_id_6',
                                         secret='321tEsTsEcReT',
                                         description='test',
@@ -570,6 +576,63 @@ class TestApiTrustedController(unittest2.TestCase):
         request_body = json.dumps(match_videos)
 
         request_path = '/api/trusted/v1/event/2014casj/match_videos/add'
+        sig = md5.new('{}{}{}'.format('321tEsTsEcReT', request_path, request_body)).hexdigest()
+        response = self.testapp.post(request_path, request_body, headers={'X-TBA-Auth-Id': 'tEsT_id_5', 'X-TBA-Auth-Sig': sig}, expect_errors=True)
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(set(Match.get_by_id('2014casj_qm1').youtube_videos), {'abcdef', 'aFZy8iibMD0'})
+        self.assertEqual(set(Match.get_by_id('2014casj_sf1m1').youtube_videos), {'RpSgUrsghv4'})
+
+
+    def test_match_videos_remove(self):
+        self.video_del_auth.put()
+
+        match1 = Match(
+            id="2014casj_qm1",
+            alliances_json="""{"blue": {"score": -1, "teams": ["frc3464", "frc20", "frc1073"]}, "red": {"score": -1, "teams": ["frc69", "frc571", "frc176"]}}""",
+            comp_level="qm",
+            event=ndb.Key(Event, '2014casj'),
+            year=2014,
+            set_number=1,
+            match_number=1,
+            team_key_names=[u'frc69', u'frc571', u'frc176', u'frc3464', u'frc20', u'frc1073'],
+            youtube_videos=["abcdef"]
+        )
+        match1.put()
+
+        match2 = Match(
+            id="2014casj_sf1m1",
+            alliances_json="""{"blue": {"score": -1, "teams": ["frc3464", "frc20", "frc1073"]}, "red": {"score": -1, "teams": ["frc69", "frc571", "frc176"]}}""",
+            comp_level="sf",
+            event=ndb.Key(Event, '2014casj'),
+            year=2014,
+            set_number=1,
+            match_number=1,
+            team_key_names=[u'frc69', u'frc571', u'frc176', u'frc3464', u'frc20', u'frc1073'],
+        )
+        match2.put()
+
+        match3 = Match(
+            id="2014casj_qm10",
+            alliances_json="""{"blue": {"score": -1, "teams": ["frc3464", "frc20", "frc1073"]}, "red": {"score": -1, "teams": ["frc69", "frc571", "frc176"]}}""",
+            comp_level="qm",
+            event=ndb.Key(Event, '2014casj'),
+            year=2014,
+            set_number=1,
+            match_number=1,
+            team_key_names=[u'frc69', u'frc571', u'frc176', u'frc3464', u'frc20', u'frc1073'],
+            youtube_videos=["abcdef"]
+        )
+        match3.put()
+
+        match_videos = {{'match': 'qm1', 'videos': ['aFZy8iibMD0']},
+                        {'match': 'sf1m1', 'videos': ['RpSgUrsghv4']},
+                        {'match': 'qm10', 'videos': []}}
+
+        request_body = json.dumps(match_videos)
+
+        request_path = '/api/trusted/v1/event/2014casj/match_videos/remove'
         sig = md5.new('{}{}{}'.format('321tEsTsEcReT', request_path, request_body)).hexdigest()
         response = self.testapp.post(request_path, request_body, headers={'X-TBA-Auth-Id': 'tEsT_id_5', 'X-TBA-Auth-Sig': sig}, expect_errors=True)
 
