@@ -2,6 +2,7 @@ import json
 
 from google.appengine.ext import ndb
 
+from consts.media_tag import MediaTag
 from consts.media_type import MediaType
 from models.event import Event
 from models.team import Team
@@ -26,6 +27,7 @@ class Media(ndb.Model):
         MediaType.PERISCOPE_PROFILE: 'periscope-profile',
         MediaType.GRABCAD: 'grabcad',
         MediaType.INSTAGRAM_IMAGE: 'instagram-image',
+        MediaType.EXTERNAL_LINK: 'external-link',
     }
 
     REFERENCE_MAP = {
@@ -37,6 +39,7 @@ class Media(ndb.Model):
 
     # media_type and foreign_key make up the key_name
     media_type_enum = ndb.IntegerProperty(required=True)
+    media_tag_enum = ndb.IntegerProperty(repeated=True)
     foreign_key = ndb.StringProperty(required=True)  # Unique id for the particular media type. Ex: the Youtube Video key at the end of a YouTube url
 
     details_json = ndb.TextProperty()  # Additional details required for rendering
@@ -55,6 +58,7 @@ class Media(ndb.Model):
             'references': set(),
             'preferred_references': set(),
             'year': set(),
+            'media_tag_enum': set(),
         }
         self._details = None
         self._private_details = None
@@ -107,8 +111,16 @@ class Media(ndb.Model):
         return 'http://www.chiefdelphi.com/media/photos/{}'.format(self.foreign_key)
 
     @property
+    def external_link(self):
+        return self.foreign_key
+
+    @property
     def youtube_url(self):
         return 'https://www.youtube.com/embed/{}'.format(self.foreign_key)
+
+    @property
+    def youtube_url_link(self):
+        return 'https://youtu.be/{}'.format(self.foreign_key)
 
     @property
     def imgur_url(self):
@@ -178,6 +190,10 @@ class Media(ndb.Model):
     @property
     def type_name(self):
         return MediaType.type_names[self.media_type_enum]
+
+    @property
+    def tag_names(self):
+        return [MediaTag.tag_names[t] for t in self.media_tag_enum]
 
     @property
     def is_image(self):

@@ -50,6 +50,7 @@ def track_call(api_action, api_label, auth_owner):
 
 class ApiBaseController(CacheableHandler):
     API_VERSION = 3
+    REQUIRE_ADMIN_AUTH = False
 
     def __init__(self, *args, **kw):
         super(ApiBaseController, self).__init__(*args, **kw)
@@ -130,7 +131,7 @@ class ApiBaseController(CacheableHandler):
             elif 'thebluealliance.com' in self.request.headers.get("Origin", ""):
                 self.auth_owner = 'The Blue Alliance'
             else:
-                self._errors = json.dumps({"Error": "X-TBA-Auth-Key is a required header or URL param. Please get an access key at http://www.thebluealliance.com/account."})
+                self._errors = {"Error": "X-TBA-Auth-Key is a required header or URL param. Please get an access key at http://www.thebluealliance.com/account."}
                 self.abort(401)
 
         if self.auth_owner:
@@ -141,7 +142,17 @@ class ApiBaseController(CacheableHandler):
                 self.auth_owner = auth.owner.id()
                 self.auth_owner_key = auth.owner
                 self.auth_description = auth.description
+                if self.REQUIRE_ADMIN_AUTH and not auth.allow_admin:
+                    self._errors = {"Error": "X-TBA-Auth-Key does not have required permissions"}
+                    self.abort(401)
                 logging.info("Auth owner: {}, X-TBA-Auth-Key: {}".format(self.auth_owner, x_tba_auth_key))
             else:
-                self._errors = json.dumps({"Error": "X-TBA-Auth-Key is invalid. Please get an access key at http://www.thebluealliance.com/account."})
+                self._errors = {"Error": "X-TBA-Auth-Key is invalid. Please get an access key at http://www.thebluealliance.com/account."}
                 self.abort(401)
+
+
+def handle_404(request, response, exception):
+    response.headers['content-type'] = 'application/json; charset="utf-8"'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.write(json.dumps({"Error": "Invalid endpoint"}))
+    response.set_status(404)

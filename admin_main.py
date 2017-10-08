@@ -7,6 +7,7 @@ import tba_config
 from controllers.admin.admin_api_controller import AdminApiAuthAdd, AdminApiAuthDelete, AdminApiAuthEdit, AdminApiAuthManage
 from controllers.admin.admin_apistatus_controller import AdminApiStatus
 from controllers.admin.admin_authkeys_controller import AdminAuthKeys
+from controllers.admin.admin_contbuild_controller import AdminContbuildController
 from controllers.admin.admin_district_controller import AdminDistrictList, AdminDistrictEdit, \
     AdminDistrictCreate
 from controllers.admin.admin_event_controller import AdminEventAddAllianceSelections, AdminEventDeleteTeams, AdminEventAddTeams, AdminEventRemapTeams, AdminEventAddWebcast, AdminEventCreate, AdminEventCreateTest, AdminEventDelete, AdminEventDetail, AdminEventEdit, AdminEventList, \
@@ -27,8 +28,8 @@ from controllers.admin.admin_sitevar_controller import AdminSitevarCreate, Admin
 from controllers.admin.admin_suggestion_controller import AdminCreateTestSuggestions
 from controllers.admin.admin_team_controller import AdminTeamCreateTest, AdminTeamDetail, AdminTeamList, \
     AdminTeamRobotNameUpdate
-from controllers.admin.admin_user_controller import AdminUserDetail, AdminUserEdit, AdminUserTestSetup, AdminUserList, AdminUserPermissionsList
-
+from controllers.admin.admin_user_controller import AdminUserDetail, AdminUserEdit, AdminUserTestSetup, AdminUserList, AdminUserPermissionsList, \
+    AdminUserLookup
 from google.appengine.ext.webapp import template
 template.register_template_library('common.my_filters')
 
@@ -39,6 +40,7 @@ app = webapp2.WSGIApplication([('/admin/', AdminMain),
                                ('/admin/api_auth/manage', AdminApiAuthManage),
                                ('/admin/apistatus', AdminApiStatus),
                                ('/admin/authkeys', AdminAuthKeys),
+                               ('/admin/contbuild/(.*)', AdminContbuildController),
                                ('/admin/debug', AdminDebugHandler),
                                ('/admin/districts', AdminDistrictList),
                                ('/admin/districts/([0-9]*)', AdminDistrictList),
@@ -94,6 +96,7 @@ app = webapp2.WSGIApplication([('/admin/', AdminMain),
                                ('/admin/users', AdminUserList),
                                ('/admin/users/permissions', AdminUserPermissionsList),
                                ('/admin/user/edit/(.*)', AdminUserEdit),
+                               ('/admin/user/lookup', AdminUserLookup),
                                ('/admin/user/create/test', AdminUserTestSetup),
                                ('/admin/user/(.*)', AdminUserDetail),
                                ('/admin/videos/add', AdminVideosAdd),

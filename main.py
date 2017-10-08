@@ -20,9 +20,9 @@ from controllers.event_controller import EventList, EventDetail, EventInsights, 
 from controllers.event_wizard_controller import EventWizardHandler, ReactEventWizardHandler
 from controllers.gameday_controller import Gameday2Controller, GamedayHandler, GamedayRedirectHandler
 from controllers.insights_controller import InsightsOverview, InsightsDetail
-from controllers.main_controller import TwoChampsHandler, ContactHandler, HashtagsHandler, \
+from controllers.main_controller import TwoChampsHandler, ContactHandler, HashtagsHandler, FIRSTHOFHandler, \
     MainKickoffHandler, MainBuildseasonHandler, MainChampsHandler, MainCompetitionseasonHandler, \
-    MainInsightsHandler, MainOffseasonHandler, OprHandler, PredictionsHandler, SearchHandler, \
+    MainInsightsHandler, MainOffseasonHandler, OprHandler, PredictionsHandler, PrivacyHandler, SearchHandler, \
     AboutHandler, ThanksHandler, handle_404, handle_500, \
     WebcastsHandler, RecordHandler, ApiWriteHandler, MatchInputHandler
 from controllers.match_controller import MatchDetail
@@ -33,6 +33,7 @@ from controllers.nearby_controller import NearbyController
 from controllers.nightbot_controller import NightbotTeamNextmatchHandler, NightbotTeamStatuskHandler
 from controllers.notification_controller import UserNotificationBroadcast
 from controllers.district_controller import DistrictDetail
+from controllers.short_controller import ShortEventHandler, ShortTeamHandler
 from controllers.suggestions.suggest_apiwrite_controller import SuggestApiWriteController
 from controllers.suggestions.suggest_apiwrite_review_controller import \
       SuggestApiWriteReviewController
@@ -102,6 +103,7 @@ app = webapp2.WSGIApplication([
       RedirectRoute(r'/apidocs/trusted', redirect_to='/apidocs/trusted/v1', name='api-trusted-documentation', strict_slash=True),
       RedirectRoute(r'/apidocs/webhooks', WebhookDocumentationHandler, 'webhook-documentation', strict_slash=True),
       RedirectRoute(r'/apiwrite', ApiWriteHandler, 'api-write', strict_slash=True),
+      RedirectRoute(r'/bigquery', redirect_to='https://bigquery.cloud.google.com/dataset/tbatv-prod-hrd:the_blue_alliance'),
       RedirectRoute(r'/contact', ContactHandler, 'contact', strict_slash=True),
       RedirectRoute(r'/event/<event_key>', EventDetail, 'event-detail', strict_slash=True),
       RedirectRoute(r'/event/<event_key>/insights', EventInsights, 'event-insights', strict_slash=True),
@@ -117,6 +119,7 @@ app = webapp2.WSGIApplication([
       RedirectRoute(r'/gameday/<alias>', GamedayRedirectHandler, 'gameday-alias', strict_slash=True),
       RedirectRoute(r'/gameday', Gameday2Controller, 'gameday2', strict_slash=True),
       RedirectRoute(r'/hashtags', HashtagsHandler, 'hashtags', strict_slash=True),
+      RedirectRoute(r'/hall-of-fame', FIRSTHOFHandler, 'hall-of-fame', strict_slash=True),
       RedirectRoute(r'/insights/<year:[0-9]+>', InsightsDetail, 'insights-detail', strict_slash=True),
       RedirectRoute(r'/insights', InsightsOverview, 'insights', strict_slash=True),
       RedirectRoute(r'/login', AccountLogin, 'account-login', strict_slash=True),
@@ -131,6 +134,7 @@ app = webapp2.WSGIApplication([
       RedirectRoute(r'/notifications/test/<type:[0-9]+>', TestNotificationController, 'test-notifications', strict_slash=True),
       RedirectRoute(r'/opr', OprHandler, 'opr', strict_slash=True),
       RedirectRoute(r'/predictions', PredictionsHandler, 'predictions', strict_slash=True),
+      RedirectRoute(r'/privacy', PrivacyHandler, 'privacy', strict_slash=True),
       RedirectRoute(r'/record', RecordHandler, 'record', strict_slash=True),
       RedirectRoute(r'/request/apiwrite', SuggestApiWriteController, 'request-apiwrite', strict_slash=True),
       RedirectRoute(r'/search', SearchHandler, 'search', strict_slash=True),
@@ -175,6 +179,8 @@ app = webapp2.WSGIApplication([
       RedirectRoute(r'/_/typeahead/<search_key>', TypeaheadHandler, 'ajax-typeahead', strict_slash=True),
       RedirectRoute(r'/_/webcast/<event_key>/<webcast_number>', WebcastHandler, 'ajax-webcast', strict_slash=True),
       RedirectRoute(r'/_/yt/playlist/videos', YouTubePlaylistHandler, 'ajex-yt-playlist', strict_slash=True),
+      RedirectRoute(r'/<:(frc)?><team_number:[0-9]+>', ShortTeamHandler, 'short-team-canonical'),
+      RedirectRoute(r'/<event_key:[0-9]{4}[a-z0-9]+>', ShortEventHandler, 'short-event-detail'),
       ],
       debug=tba_config.DEBUG)
 app.error_handlers[404] = handle_404

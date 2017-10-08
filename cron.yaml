@@ -34,6 +34,11 @@ cron:
   url: /tasks/enqueue/fmsapi_awards/now
   schedule: every 1 hours
 
+- description: Hall of Fame team list scraping
+  url: /tasks/get/hof_teams
+  schedule: every thursday 01:00
+  timezone: America/Los_Angeles
+
 - description: Typeahead Calculation
   url: /backend-tasks-b2/math/enqueue/typeaheadcalc
   schedule: every day 01:00
@@ -67,7 +72,6 @@ cron:
 - description: Upcoming match notification sending
   url: /tasks/notifications/upcoming_match
   schedule: every 2 minutes
-  timezone: America/Los_Angeles
 
 - description: Update live events (and bluezone)
   url: /tasks/do/update_live_events
@@ -76,6 +80,16 @@ cron:
 - description: Predict Match Times
   url: /tasks/math/enqueue/predict_match_times
   schedule: every 1 minutes
+
+- description: Suggestion Queue Nag
+  url: /tasks/do/nag_suggestions
+  schedule: every day 12:00
+  timezone: America/Los_Angeles
+
+- description: Backup Cron job
+  url: /backend-tasks/backup/enqueue
+  schedule: 1 of month 03:00
+  timezone: America/Los_Angeles
 
 # - description: BlueZone Update
 #   url: /tasks/do/bluezone_update

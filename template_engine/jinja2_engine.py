@@ -39,5 +39,8 @@ JINJA_ENV = get_jinja_env()  # Set up instance cache
 
 
 def render(template, template_values):
-    template = JINJA_ENV.get_template(template)
-    return template.render(template_values)
+    from stackdriver.profiler import TraceContext
+    with TraceContext() as root:
+        with root.span("jinja2_engine.render({})".format(template)) as spn:
+            template = JINJA_ENV.get_template(template)
+            return template.render(template_values)

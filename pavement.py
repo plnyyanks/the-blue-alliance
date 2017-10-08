@@ -4,6 +4,7 @@ import subprocess
 import json
 import time
 import optparse
+import os
 from paver.easy import *
 
 path = path("./")
@@ -71,8 +72,18 @@ def less():
 
 
 @task
-def lint():
-    sh("python linter.py")
+@cmdopts([
+    ('commit=', 'c', 'Commit hash to lint'),
+    ('base=', 'b', 'Lint all changes between the current HEAD and this base branch'),
+])
+def lint(options):
+    args = ""
+    if 'base' in options.lint:
+        args = "--base {}".format(options.lint.base)
+    elif 'commit' in options.lint:
+        args = "--commit {}".format(options.lint.commit)
+
+    sh("python ops/linter.py {}".format(args))
 
 
 @task
@@ -85,9 +96,12 @@ def make():
     git_branch_name = subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"])
     git_last_commit = subprocess.check_output(["git", "log", "-1"])
     build_time = time.ctime()
+    travis_job = os.environ.get('TRAVIS_BUILD_ID', '')
     data = {"git_branch_name": git_branch_name,
             "git_last_commit": git_last_commit,
-            "build_time": build_time}
+            "build_time": build_time,
+            "build_number": travis_job,
+            }
     with open("version_info.json", "w") as f:
         f.write(json.dumps(data))
 
@@ -98,6 +112,12 @@ def preflight():
     install_libs()
     test_function([])
     make()
+
+
+@task
+def run():
+    """Run local dev server"""
+    sh("dev_appserver.py dispatch.yaml app.yaml app-backend-tasks.yaml app-backend-tasks-b2.yaml")
 
 
 @task

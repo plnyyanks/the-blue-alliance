@@ -3,7 +3,6 @@ from google.appengine.ext.ndb.tasklets import Future
 
 import datetime
 import json
-import pytz
 import re
 
 from consts.playoff_type import PlayoffType
@@ -53,6 +52,7 @@ class Event(ndb.Model):
     custom_hashtag = ndb.StringProperty(indexed=False)  # Custom HashTag
     website = ndb.StringProperty(indexed=False)
     webcast_json = ndb.TextProperty(indexed=False)  # list of dicts, valid keys include 'type' and 'channel'
+    enable_predictions = ndb.BooleanProperty(default=False)
 
     created = ndb.DateTimeProperty(auto_now_add=True, indexed=False)
     updated = ndb.DateTimeProperty(auto_now=True, indexed=False)
@@ -148,6 +148,7 @@ class Event(ndb.Model):
         return self._matches
 
     def local_time(self):
+        import pytz
         now = datetime.datetime.now()
         if self.timezone_id is not None:
             tz = pytz.timezone(self.timezone_id)
