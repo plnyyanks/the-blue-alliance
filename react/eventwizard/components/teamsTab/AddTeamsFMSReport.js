@@ -6,6 +6,9 @@ import TeamList from './TeamList'
 
 class AddTeamsFMSReport extends Component {
 
+  // Headers start on the second row
+  HEADER_START_ROW = 2
+
   constructor(props) {
     super(props)
     this.state = {
@@ -44,7 +47,7 @@ class AddTeamsFMSReport extends Component {
     // parse the excel to array of matches
     // headers start on 2nd row
     // eslint-disable-next-line no-undef
-    const teamsInFile = XLSX.utils.sheet_to_json(sheet, { range: 2 })
+    const teamsInFile = XLSX.utils.sheet_to_json(sheet, { range: this.HEADER_START_ROW })
     const teams = []
     for (let i = 0; i < teamsInFile.length; i++) {
       const team = teamsInFile[i]
