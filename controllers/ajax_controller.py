@@ -11,12 +11,15 @@ from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 from google.appengine.ext.webapp import template
+
+from consts.playoff_type import PlayoffType
 from helpers.model_to_dict import ModelToDict
 from helpers.mytba_helper import MyTBAHelper
 from models.account import Account
 from models.api_auth_access import ApiAuthAccess
 from models.event import Event
 from models.favorite import Favorite
+from models.match import Match
 from models.mobile_client import MobileClient
 from models.sitevar import Sitevar
 from models.typeahead_entry import TypeaheadEntry
@@ -330,3 +333,46 @@ class AllowedApiWriteEventsHandler(LoggedInHandler):
         for event in events:
             details.append({'value': event.key_name, 'label': "{} {}".format(event.year, event.name)})
         self.response.out.write(json.dumps(details))
+
+
+class FMSMatchNumberToEventKeyHandler(LoggedInHandler):
+    """
+    Translate FMS match numbers into TBA event keys
+    Accepts
+    """
+    def post(self, event_key, desired_comp_level):
+        event = Event.get_by_id(event_key)
+        if not event:
+            self.abort(404)
+
+        if desired_comp_level not in Match.COMP_LEVELS:
+            self.abort(400)
+
+        try:
+            fms_nums = json.loads(self.request.body)
+        except Exception, e:
+            logging.warning(e.message)
+            self.abort(400)
+            return
+
+        result_dict = {}
+        for fms_num in fms_nums:
+            comp_level = PlayoffType.get_comp_level(
+                event.playoff_type,
+                desired_comp_level,  # This is only used to determine between qual and elim
+                fms_num
+            )
+            set_num, match_num = PlayoffType.get_set_match_number(
+                event.playoff_type,
+                comp_level,
+                fms_num
+            )
+            match_key = Match.renderKeyName(event.key_name, comp_level, set_num, match_num)
+            result_dict[fms_num] = {
+                'key': match_key,
+                'comp_level': comp_level,
+                'set_num': set_num,
+                'match_num': match_num
+            }
+
+        self.response.out.write(json.dumps(result_dict))

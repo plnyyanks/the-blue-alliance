@@ -33,7 +33,7 @@ class PlayoffType(object):
 
     @classmethod
     def get_comp_level(cls, playoff_type, match_level, match_number):
-        if match_level == 'Qualification':
+        if match_level == 'Qualification' or match_level == 'qm':
             return 'qm'
         else:
             if playoff_type == cls.AVG_SCORE_8_TEAM:
