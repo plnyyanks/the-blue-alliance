@@ -3,7 +3,7 @@ import logging
 from collections import defaultdict
 
 from google.appengine.ext import db
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.api import users
 from google.appengine.api import memcache
 

@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.playoff_type import PlayoffType
 from helpers.match_helper import MatchHelper

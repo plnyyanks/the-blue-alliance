@@ -1,4 +1,4 @@
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.district_type import DistrictType
 from database.database_query import DatabaseQuery

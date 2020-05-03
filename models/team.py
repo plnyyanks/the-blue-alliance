@@ -1,7 +1,7 @@
 import logging
 import re
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from models.location import Location
 
 

@@ -1,7 +1,7 @@
 import json
 import unittest2
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from helpers.match_manipulator import MatchManipulator

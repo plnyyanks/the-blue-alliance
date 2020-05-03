@@ -2,7 +2,7 @@ from collections import defaultdict
 import datetime
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.webapp import template
 
 from consts.model_type import ModelType

@@ -4,7 +4,7 @@ import logging
 
 import webapp2
 from google.appengine.api import memcache
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 import tba_config
 from base_controller import CacheableHandler

@@ -1,6 +1,6 @@
 import copy
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.ndb.tasklets import Future
 
 from consts.playoff_type import PlayoffType

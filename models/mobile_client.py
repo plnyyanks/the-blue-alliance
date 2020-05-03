@@ -1,5 +1,5 @@
 import urllib
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.client_type import ClientType
 

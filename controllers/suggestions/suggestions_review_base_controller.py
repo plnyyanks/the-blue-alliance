@@ -1,5 +1,5 @@
 import datetime
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from controllers.base_controller import LoggedInHandler
 from models.suggestion import Suggestion

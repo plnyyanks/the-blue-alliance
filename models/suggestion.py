@@ -1,6 +1,6 @@
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.suggestions.media_creator import MediaCreator
 from models.account import Account

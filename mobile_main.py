@@ -2,7 +2,7 @@ import endpoints
 import json
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from protorpc import remote
 from protorpc import message_types

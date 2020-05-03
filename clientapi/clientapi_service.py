@@ -2,7 +2,7 @@ import endpoints
 import json
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 import google.auth.transport.requests
 import google.oauth2.id_token
 from protorpc import remote

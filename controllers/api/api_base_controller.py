@@ -7,7 +7,7 @@ import tba_config
 import webapp2
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.account_permissions import AccountPermissions
 from consts.auth_type import AuthType

@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.auth_type import AuthType
 from consts.event_type import EventType

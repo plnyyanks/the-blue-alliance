@@ -9,7 +9,7 @@ from datafeeds.parsers.fms_api.fms_api_event_alliances_parser import FMSAPIEvent
 from datafeeds.parsers.fms_api.fms_api_event_rankings_parser import FMSAPIEventRankingsParser
 from datafeeds.parsers.fms_api.fms_api_match_parser import FMSAPIHybridScheduleParser
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from models.event import Event

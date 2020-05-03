@@ -1,6 +1,6 @@
 import urlparse
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from models.team import Team
 from sitevars.website_blacklist import WebsiteBlacklist

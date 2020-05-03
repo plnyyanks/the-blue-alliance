@@ -9,7 +9,7 @@ from datetime import datetime
 
 from database.district_query import DistrictsInYearQuery
 from database.event_query import DistrictEventsQuery
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from database.team_query import DistrictTeamsQuery
 from helpers.district_helper import DistrictHelper

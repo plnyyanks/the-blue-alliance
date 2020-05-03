@@ -3,7 +3,7 @@ import MySQLdb.cursors
 import logging
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 import tba_config
 from database.database_query import DatabaseQuery

@@ -5,7 +5,7 @@ import datetime
 import re
 
 from google.appengine.api import memcache
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.district_type import DistrictType
 from consts.event_type import EventType

@@ -1,6 +1,6 @@
 from calendar import monthrange
 from datetime import datetime, timedelta, tzinfo, date
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from pytz import timezone, UTC
 
 from consts.event_type import EventType

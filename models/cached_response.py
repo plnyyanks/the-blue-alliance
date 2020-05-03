@@ -1,5 +1,5 @@
 import json
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 
 class CachedResponse(ndb.Model):

@@ -5,7 +5,7 @@ import tba_config
 import traceback
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.api import urlfetch
 
 from consts.event_type import EventType

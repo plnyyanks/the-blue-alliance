@@ -1,6 +1,6 @@
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.model_type import ModelType
 from consts.notification_type import NotificationType

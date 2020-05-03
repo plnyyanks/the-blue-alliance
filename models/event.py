@@ -4,7 +4,7 @@ from consts.playoff_type import PlayoffType
 from consts.district_type import DistrictType
 from consts.event_type import EventType
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.ndb.tasklets import Future
 
 from models.district import District

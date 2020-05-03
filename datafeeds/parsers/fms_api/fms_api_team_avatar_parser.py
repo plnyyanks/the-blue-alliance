@@ -1,6 +1,6 @@
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from models.media import Media
 from models.team import Team

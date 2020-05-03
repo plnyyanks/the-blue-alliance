@@ -8,7 +8,7 @@ import unittest2
 
 from google.appengine.api.taskqueue import taskqueue
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.award_type import AwardType

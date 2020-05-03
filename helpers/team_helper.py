@@ -2,7 +2,7 @@ import re
 import logging
 
 from google.appengine.api import memcache
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.api import urlfetch
 
 from helpers.team_manipulator import TeamManipulator

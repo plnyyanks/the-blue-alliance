@@ -1,7 +1,7 @@
 import datetime
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.media_tag import MediaTag
 

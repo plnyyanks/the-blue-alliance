@@ -1,4 +1,4 @@
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.notification_helper import NotificationHelper
 from models.account import Account

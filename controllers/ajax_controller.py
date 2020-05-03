@@ -10,7 +10,7 @@ from consts.client_type import ClientType
 from consts.playoff_type import PlayoffType
 from google.appengine.api import memcache
 from google.appengine.api import urlfetch
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.webapp import template
 from helpers.model_to_dict import ModelToDict
 from helpers.mytba_helper import MyTBAHelper

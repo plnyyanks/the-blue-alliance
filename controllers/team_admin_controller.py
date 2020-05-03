@@ -5,7 +5,7 @@ from collections import defaultdict
 
 from base_controller import CacheableHandler, LoggedInHandler
 from database import media_query
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from helpers.media_manipulator import MediaManipulator
 from helpers.robot_manipulator import RobotManipulator
 from helpers.media_helper import MediaHelper

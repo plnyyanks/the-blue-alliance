@@ -3,7 +3,7 @@ import logging
 import tba_config
 
 from google.appengine.api import search
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from controllers.base_controller import CacheableHandler
 from helpers.location_helper import LocationHelper

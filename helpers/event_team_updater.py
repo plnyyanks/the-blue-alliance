@@ -1,6 +1,6 @@
 import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.match_helper import MatchHelper
 from models.award import Award

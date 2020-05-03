@@ -2,7 +2,7 @@ import datetime
 import json
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.district_type import DistrictType
 from consts.event_type import EventType

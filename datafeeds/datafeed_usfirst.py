@@ -4,7 +4,7 @@ import re
 
 from google.appengine.api import memcache
 from google.appengine.api import urlfetch
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 import tba_config
 

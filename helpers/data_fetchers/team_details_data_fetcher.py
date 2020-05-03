@@ -1,6 +1,6 @@
 import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from database import award_query, event_query, match_query, team_query
 

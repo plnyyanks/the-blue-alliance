@@ -4,7 +4,7 @@ import json
 import webapp2
 import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from controllers.api.api_match_controller import ApiMatchController

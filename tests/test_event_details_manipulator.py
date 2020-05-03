@@ -1,6 +1,6 @@
 import unittest2
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from datafeeds.usfirst_event_rankings_parser import UsfirstEventRankingsParser

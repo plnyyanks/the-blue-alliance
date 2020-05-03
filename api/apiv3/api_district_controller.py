@@ -1,6 +1,6 @@
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from api.apiv3.api_base_controller import ApiBaseController
 from api.apiv3.model_properties import filter_event_properties, filter_team_properties

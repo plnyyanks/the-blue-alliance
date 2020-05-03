@@ -2,7 +2,7 @@ import json
 import logging
 import traceback
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.cache_clearer import CacheClearer
 from helpers.location_helper import LocationHelper

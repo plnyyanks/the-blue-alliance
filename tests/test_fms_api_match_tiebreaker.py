@@ -2,7 +2,7 @@ import datetime
 import unittest2
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from datafeeds.datafeed_fms_api import DatafeedFMSAPI

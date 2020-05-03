@@ -1,4 +1,4 @@
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.auth_type import AuthType
 from models.account import Account

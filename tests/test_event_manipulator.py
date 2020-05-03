@@ -2,7 +2,7 @@ import datetime
 import json
 import unittest2
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.event_type import EventType

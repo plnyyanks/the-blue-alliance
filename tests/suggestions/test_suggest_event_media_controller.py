@@ -3,7 +3,7 @@ import webapp2
 import webtest
 
 from google.appengine.ext import testbed
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from webapp2_extras.routes import RedirectRoute
 
 from consts.event_type import EventType

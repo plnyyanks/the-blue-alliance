@@ -5,7 +5,7 @@ import webapp2
 
 from datetime import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.event_type import EventType

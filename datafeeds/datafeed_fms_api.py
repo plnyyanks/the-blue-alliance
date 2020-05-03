@@ -6,7 +6,7 @@ import logging
 import tba_config
 import traceback
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.event_type import EventType
 from controllers.api.api_status_controller import ApiStatusController

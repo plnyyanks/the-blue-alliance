@@ -4,7 +4,7 @@ import datetime
 import json
 
 from appengine_fixture_loader.loader import load_fixture
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.event_details_manipulator import EventDetailsManipulator
 from helpers.match_helper import MatchHelper

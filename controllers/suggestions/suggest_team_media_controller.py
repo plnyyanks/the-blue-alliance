@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.media_type import MediaType
 from controllers.base_controller import LoggedInHandler

@@ -7,7 +7,7 @@ import urllib
 
 from difflib import SequenceMatcher
 from google.appengine.api import memcache, urlfetch
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from models.location import Location
 from models.sitevar import Sitevar

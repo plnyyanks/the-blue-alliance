@@ -2,7 +2,7 @@ import unittest2
 
 from appengine_fixture_loader.loader import load_fixture
 from google.appengine.ext import testbed
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.event_simulator import EventSimulator
 from helpers.event_team_status_helper import EventTeamStatusHelper

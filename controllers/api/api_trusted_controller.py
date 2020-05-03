@@ -4,7 +4,7 @@ import re
 import webapp2
 
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.auth_type import AuthType
 from consts.media_type import MediaType

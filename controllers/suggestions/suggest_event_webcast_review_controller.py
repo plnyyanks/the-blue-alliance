@@ -3,7 +3,7 @@ import os
 import logging
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.webapp import template
 
 from consts.account_permissions import AccountPermissions

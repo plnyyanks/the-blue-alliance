@@ -1,6 +1,6 @@
 import re
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 
 class District(ndb.Model):

@@ -1,7 +1,7 @@
 import unittest2
 import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 from google.appengine.ext.webapp import Response
 

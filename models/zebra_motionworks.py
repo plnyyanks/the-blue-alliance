@@ -1,5 +1,5 @@
 import datetime
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from models.event import Event
 
 

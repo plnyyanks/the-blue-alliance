@@ -5,7 +5,7 @@ import string
 import os
 from datetime import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.webapp import template
 
 from consts.auth_type import AuthType

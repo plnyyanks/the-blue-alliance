@@ -3,7 +3,7 @@ import json
 import datetime
 import re
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.event_type import EventType
 from consts.playoff_type import PlayoffType

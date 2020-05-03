@@ -1,5 +1,5 @@
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from models.account import Account
 from models.team import Team
 

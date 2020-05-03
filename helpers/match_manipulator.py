@@ -3,7 +3,7 @@ import logging
 import traceback
 
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.cache_clearer import CacheClearer
 from helpers.firebase.firebase_pusher import FirebasePusher

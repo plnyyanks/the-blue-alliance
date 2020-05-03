@@ -1,6 +1,6 @@
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.award_type import AwardType
 from consts.event_type import EventType

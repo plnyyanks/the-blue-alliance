@@ -4,7 +4,7 @@ import tba_config
 import webapp2
 
 from datetime import datetime
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from controllers.api.api_base_controller import ApiBaseController
 

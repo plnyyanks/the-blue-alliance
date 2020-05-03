@@ -2,7 +2,7 @@ import datetime
 import logging
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from controllers.base_controller import CacheableHandler
 

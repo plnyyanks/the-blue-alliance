@@ -4,7 +4,7 @@ import unittest2
 from consts.model_type import ModelType
 from consts.notification_type import NotificationType
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from helpers.mytba_helper import MyTBAHelper

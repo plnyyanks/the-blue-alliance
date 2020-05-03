@@ -1,4 +1,4 @@
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from base_controller import LoggedInHandler
 from models.account import Account

@@ -1,7 +1,7 @@
 import json
 import urlparse
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.district_type import DistrictType
 from helpers.website_helper import WebsiteHelper

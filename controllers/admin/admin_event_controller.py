@@ -4,7 +4,7 @@ import logging
 import os
 
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.webapp import template
 
 from consts.event_type import EventType

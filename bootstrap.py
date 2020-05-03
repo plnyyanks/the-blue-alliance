@@ -17,7 +17,7 @@ except ImportError:
     print('Please make sure the App Engine SDK is in your PYTHONPATH.')
     raise
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.remote_api import remote_api_stub
 
 from models.award import Award

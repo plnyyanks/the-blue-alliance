@@ -2,7 +2,7 @@ import unittest2
 
 from appengine_fixture_loader.loader import load_fixture
 from google.appengine.ext import testbed
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from helpers.match_helper import MatchHelper
 from models.event import Event

@@ -1,7 +1,7 @@
 import calendar
 import unittest2
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.notification_type import NotificationType

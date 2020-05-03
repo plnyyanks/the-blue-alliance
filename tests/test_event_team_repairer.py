@@ -3,7 +3,7 @@ import unittest2
 
 from consts.event_type import EventType
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from helpers.event_team_manipulator import EventTeamManipulator

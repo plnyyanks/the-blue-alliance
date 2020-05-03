@@ -1,6 +1,6 @@
 import datetime
 from google.appengine.api import memcache
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 import logging
 from models.cached_query_result import CachedQueryResult

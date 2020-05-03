@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta
 
 from google.appengine.api import mail
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from consts.account_permissions import AccountPermissions
 from consts.auth_type import AuthType

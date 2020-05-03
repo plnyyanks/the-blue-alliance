@@ -2,7 +2,7 @@ from firebase_admin import messaging
 from mock import Mock, patch
 import unittest2
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.fcm.platform_priority import PlatformPriority

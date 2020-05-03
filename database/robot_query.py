@@ -1,4 +1,4 @@
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from database.database_query import DatabaseQuery
 from database.dict_converters.robot_converter import RobotConverter

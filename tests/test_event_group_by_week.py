@@ -4,7 +4,7 @@ import datetime
 import random
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.event_type import EventType

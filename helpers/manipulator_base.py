@@ -1,6 +1,6 @@
 from collections import defaultdict
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from helpers.cache_clearer import CacheClearer
 import tba_config
 

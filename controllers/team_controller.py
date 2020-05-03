@@ -1,7 +1,7 @@
 import datetime
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.webapp import template
 
 from base_controller import CacheableHandler

@@ -4,7 +4,7 @@ import unittest2
 
 from datafeeds.parsers.fms_api.fms_api_event_list_parser import FMSAPIEventListParser
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from consts.event_type import EventType

@@ -3,7 +3,7 @@ import unittest2
 
 from datafeeds.parsers.fms_api.fms_api_team_details_parser import FMSAPITeamDetailsParser
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from models.district import District
